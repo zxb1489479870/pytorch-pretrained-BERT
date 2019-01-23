@@ -977,4 +977,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with torch.autograd.profiler.profile() as prof:
+        main()
+    prof.export_chrome_trace("prof_cpu.json")
