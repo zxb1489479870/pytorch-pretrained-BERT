@@ -616,4 +616,6 @@ def main():
                 writer.write("%s = %s\n" % (key, str(result[key])))
 
 if __name__ == "__main__":
-    main()
+    with torch.autograd.profiler.profile() as prof:
+        main()
+    prof.export_chrome_trace("profiler/prof_cpu.json")
